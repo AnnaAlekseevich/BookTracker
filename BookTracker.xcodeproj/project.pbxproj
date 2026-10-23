@@ -3,17 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B00C00010000000000000002 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C00010000000000000001 /* Book.swift */; };
+		B00C00010000000000000004 /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C00010000000000000003 /* BookRowView.swift */; };
 		DB02A7B33074256400201734 /* BookTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7B23074256400201734 /* BookTrackerApp.swift */; };
 		DB02A7B53074256400201734 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7B43074256400201734 /* ContentView.swift */; };
 		DB02A7B73074256600201734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB02A7B63074256600201734 /* Assets.xcassets */; };
 		DB02A7BB3074256600201734 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB02A7BA3074256600201734 /* Preview Assets.xcassets */; };
-		DB02A7C53074256600201734 /* BookTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7C43074256600201734 /* BookTrackerTests.swift */; };
-		DB02A7CF3074256600201734 /* BookTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7CE3074256600201734 /* BookTrackerUITests.swift */; };
-		DB02A7D13074256600201734 /* BookTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7D03074256600201734 /* BookTrackerUITestsLaunchTests.swift */; };
+		DB95D11630822F9A0022B1A8 /* BooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB95D11530822F8B0022B1A8 /* BooksViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B00C00010000000000000001 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		B00C00010000000000000003 /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
 		DB02A7AF3074256400201734 /* BookTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB02A7B23074256400201734 /* BookTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTrackerApp.swift; sourceTree = "<group>"; };
 		DB02A7B43074256400201734 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,11 +43,13 @@
 		DB02A7B83074256600201734 /* BookTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookTracker.entitlements; sourceTree = "<group>"; };
 		DB02A7BA3074256600201734 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB02A7C03074256600201734 /* BookTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB02A7C43074256600201734 /* BookTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTrackerTests.swift; sourceTree = "<group>"; };
 		DB02A7CA3074256600201734 /* BookTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB02A7CE3074256600201734 /* BookTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTrackerUITests.swift; sourceTree = "<group>"; };
-		DB02A7D03074256600201734 /* BookTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DB95D11530822F8B0022B1A8 /* BooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DB7BBE9C308AB85B0003DCF5 /* WishList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WishList; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DB02A7AC3074256400201734 /* Frameworks */ = {
@@ -76,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				DB02A7B13074256400201734 /* BookTracker */,
-				DB02A7C33074256600201734 /* BookTrackerTests */,
-				DB02A7CD3074256600201734 /* BookTrackerUITests */,
 				DB02A7B03074256400201734 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,8 +97,12 @@
 		DB02A7B13074256400201734 /* BookTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DB7BBE9C308AB85B0003DCF5 /* WishList */,
+				DB95D11530822F8B0022B1A8 /* BooksViewModel.swift */,
 				DB02A7B23074256400201734 /* BookTrackerApp.swift */,
 				DB02A7B43074256400201734 /* ContentView.swift */,
+				B00C00010000000000000003 /* BookRowView.swift */,
+				B00C00010000000000000001 /* Book.swift */,
 				DB02A7B63074256600201734 /* Assets.xcassets */,
 				DB02A7B83074256600201734 /* BookTracker.entitlements */,
 				DB02A7B93074256600201734 /* Preview Content */,
@@ -110,23 +116,6 @@
 				DB02A7BA3074256600201734 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		DB02A7C33074256600201734 /* BookTrackerTests */ = {
-			isa = PBXGroup;
-			children = (
-				DB02A7C43074256600201734 /* BookTrackerTests.swift */,
-			);
-			path = BookTrackerTests;
-			sourceTree = "<group>";
-		};
-		DB02A7CD3074256600201734 /* BookTrackerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DB02A7CE3074256600201734 /* BookTrackerUITests.swift */,
-				DB02A7D03074256600201734 /* BookTrackerUITestsLaunchTests.swift */,
-			);
-			path = BookTrackerUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +132,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DB7BBE9C308AB85B0003DCF5 /* WishList */,
 			);
 			name = BookTracker;
 			productName = BookTracker;
@@ -260,6 +252,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB02A7B53074256400201734 /* ContentView.swift in Sources */,
+				B00C00010000000000000004 /* BookRowView.swift in Sources */,
+				B00C00010000000000000002 /* Book.swift in Sources */,
+				DB95D11630822F9A0022B1A8 /* BooksViewModel.swift in Sources */,
 				DB02A7B33074256400201734 /* BookTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +263,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB02A7C53074256600201734 /* BookTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +270,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB02A7D13074256600201734 /* BookTrackerUITestsLaunchTests.swift in Sources */,
-				DB02A7CF3074256600201734 /* BookTrackerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +432,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alekseyevich.BookTracker.BookTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -476,7 +469,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alekseyevich.BookTracker.BookTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
