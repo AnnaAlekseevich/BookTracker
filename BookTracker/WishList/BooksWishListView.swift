@@ -65,7 +65,11 @@ struct BooksWishListView: View {
         case .filled:
             List {
                 ForEach(model.books) { book in
-                    BookRowView(book: book)
+                    BookRowView(
+                        book: book,
+                        isInReadingList: true,
+                        onToggleWishList: {}
+                    )
                 }
                 .onDelete(perform: model.deleteBook)
             }

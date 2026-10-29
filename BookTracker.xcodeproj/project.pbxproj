@@ -10,9 +10,11 @@
 		B00C00010000000000000002 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C00010000000000000001 /* Book.swift */; };
 		B00C00010000000000000004 /* BookRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C00010000000000000003 /* BookRowView.swift */; };
 		DB02A7B33074256400201734 /* BookTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7B23074256400201734 /* BookTrackerApp.swift */; };
-		DB02A7B53074256400201734 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7B43074256400201734 /* ContentView.swift */; };
+		DB02A7B53074256400201734 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A7B43074256400201734 /* RootView.swift */; };
 		DB02A7B73074256600201734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB02A7B63074256600201734 /* Assets.xcassets */; };
 		DB02A7BB3074256600201734 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB02A7BA3074256600201734 /* Preview Assets.xcassets */; };
+		DB7BBE9E308B98E50003DCF5 /* BooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BBE9D308B98DD0003DCF5 /* BooksView.swift */; };
+		DB7BBEA2308B9AFD0003DCF5 /* BookDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BBEA1308B9AF30003DCF5 /* BookDTO.swift */; };
 		DB95D11630822F9A0022B1A8 /* BooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB95D11530822F8B0022B1A8 /* BooksViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,17 +40,20 @@
 		B00C00010000000000000003 /* BookRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRowView.swift; sourceTree = "<group>"; };
 		DB02A7AF3074256400201734 /* BookTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB02A7B23074256400201734 /* BookTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTrackerApp.swift; sourceTree = "<group>"; };
-		DB02A7B43074256400201734 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DB02A7B43074256400201734 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		DB02A7B63074256600201734 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB02A7B83074256600201734 /* BookTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookTracker.entitlements; sourceTree = "<group>"; };
 		DB02A7BA3074256600201734 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB02A7C03074256600201734 /* BookTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB02A7CA3074256600201734 /* BookTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB7BBE9D308B98DD0003DCF5 /* BooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksView.swift; sourceTree = "<group>"; };
+		DB7BBEA1308B9AF30003DCF5 /* BookDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDTO.swift; sourceTree = "<group>"; };
 		DB95D11530822F8B0022B1A8 /* BooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DB7BBE9C308AB85B0003DCF5 /* WishList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WishList; sourceTree = "<group>"; };
+		DB7BBEA3308B9EC40003DCF5 /* Api */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Api; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,15 +102,15 @@
 		DB02A7B13074256400201734 /* BookTracker */ = {
 			isa = PBXGroup;
 			children = (
-				DB7BBE9C308AB85B0003DCF5 /* WishList */,
-				DB95D11530822F8B0022B1A8 /* BooksViewModel.swift */,
-				DB02A7B23074256400201734 /* BookTrackerApp.swift */,
-				DB02A7B43074256400201734 /* ContentView.swift */,
-				B00C00010000000000000003 /* BookRowView.swift */,
-				B00C00010000000000000001 /* Book.swift */,
-				DB02A7B63074256600201734 /* Assets.xcassets */,
+				DB7BBEA3308B9EC40003DCF5 /* Api */,
 				DB02A7B83074256600201734 /* BookTracker.entitlements */,
+				DB02A7B23074256400201734 /* BookTrackerApp.swift */,
+				DB02A7B43074256400201734 /* RootView.swift */,
+				DB02A7B63074256600201734 /* Assets.xcassets */,
+				DB7BBE9F308B99B80003DCF5 /* Books */,
+				DB7BBEA0308B99D30003DCF5 /* Models */,
 				DB02A7B93074256600201734 /* Preview Content */,
+				DB7BBE9C308AB85B0003DCF5 /* WishList */,
 			);
 			path = BookTracker;
 			sourceTree = "<group>";
@@ -116,6 +121,25 @@
 				DB02A7BA3074256600201734 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DB7BBE9F308B99B80003DCF5 /* Books */ = {
+			isa = PBXGroup;
+			children = (
+				DB7BBE9D308B98DD0003DCF5 /* BooksView.swift */,
+				DB95D11530822F8B0022B1A8 /* BooksViewModel.swift */,
+				B00C00010000000000000003 /* BookRowView.swift */,
+			);
+			path = Books;
+			sourceTree = "<group>";
+		};
+		DB7BBEA0308B99D30003DCF5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DB7BBEA1308B9AF30003DCF5 /* BookDTO.swift */,
+				B00C00010000000000000001 /* Book.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +159,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				DB7BBE9C308AB85B0003DCF5 /* WishList */,
+				DB7BBEA3308B9EC40003DCF5 /* Api */,
 			);
 			name = BookTracker;
 			productName = BookTracker;
@@ -251,11 +276,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB02A7B53074256400201734 /* ContentView.swift in Sources */,
+				DB02A7B53074256400201734 /* RootView.swift in Sources */,
 				B00C00010000000000000004 /* BookRowView.swift in Sources */,
+				DB7BBE9E308B98E50003DCF5 /* BooksView.swift in Sources */,
 				B00C00010000000000000002 /* Book.swift in Sources */,
 				DB95D11630822F9A0022B1A8 /* BooksViewModel.swift in Sources */,
 				DB02A7B33074256400201734 /* BookTrackerApp.swift in Sources */,
+				DB7BBEA2308B9AFD0003DCF5 /* BookDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
