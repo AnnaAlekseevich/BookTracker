@@ -18,6 +18,12 @@ final class BooksWishListViewModel {
     var books: [Book]
     var isShowAddBookView = false
     var newBookTitle = ""
+    let onOpenBookDetails: (Book) -> Void
+    
+    init(books: [Book] = [], onOpenBookDetails: @escaping (Book) -> Void = { _ in }) {
+        self.books = books
+        self.onOpenBookDetails = onOpenBookDetails
+    }
 
     var state: BooksWishListState {
         if books.isEmpty { .empty } else { .filled }
@@ -25,10 +31,6 @@ final class BooksWishListViewModel {
 
     var canAddBook: Bool {
         !newBookTitle.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-
-    init(books: [Book] = []) {
-        self.books = books
     }
 
     func showAddBookView() {
@@ -56,5 +58,9 @@ final class BooksWishListViewModel {
 
     func deleteBook(index: IndexSet) {
         books.remove(atOffsets: index)
+    }
+    
+    func openBookDetails(_ book: Book) {
+        onOpenBookDetails(book) 
     }
 }

@@ -35,12 +35,16 @@ struct BooksView: View {
     var contentView: some View {
         VStack {
             List {
+                Text("count = \(model.booksWishList.count)")
                 ForEach(model.books) { book in
                     BookRowView(
                         book: book,
                         isInReadingList: model.isInWishList(book),
                         onToggleWishList: {
                             model.toggleWishList(book)
+                        },
+                        onOpenBookDetails: {
+                            model.openBookDetails(book)
                         }
                     )
                 }
@@ -51,14 +55,22 @@ struct BooksView: View {
             }
             .listStyle(.plain)
 
-            Button(action: model.openBoorsWishListScreen) {
+            Button(action: model.openBooksWishListScreen) {
                 Text("Books Wish List")
             }
+            
+//            NavigationLink(destination: BooksWishListView()) {
+//                Text("Books Wish List")
+//            }
         }
         .navigationDestination(for: BooksRoute.self) { route in
             switch route {
-            case .wishList:
-                BooksWishListView()
+            case let .wishList(books):
+                BooksWishListView(model: BooksWishListViewModel(books: books, onOpenBookDetails: { book in
+                    model.openBookDetails(book)
+                }))
+            case let .bookDetails(book):
+                BookDetailsView(model: .init(book: book))
             }
         }
     }

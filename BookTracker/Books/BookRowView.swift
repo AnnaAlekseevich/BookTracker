@@ -11,6 +11,7 @@ struct BookRowView: View {
     let book: Book
     let isInReadingList: Bool
     let onToggleWishList: () -> Void
+    let onOpenBookDetails: () -> Void
     
     var body: some View {
             HStack(alignment: .top, spacing: 16) {
@@ -34,6 +35,9 @@ struct BookRowView: View {
 
                 addBookCheckBox
             }
+            .onTapGesture {
+                onOpenBookDetails()
+             }
             .padding(.vertical, 8)
         }
 
@@ -71,12 +75,12 @@ struct BookRowView: View {
 }
 
 #Preview("Single row") {
-    BookRowView(book: Book.samples[0], isInReadingList: true, onToggleWishList: {})
+    BookRowView(book: Book.samples[0], isInReadingList: true, onToggleWishList: {}, onOpenBookDetails: {})
         .padding()
 }
 
 #Preview("List") {
     List(Book.samples) { book in
-        BookRowView(book: book, isInReadingList: false, onToggleWishList: {})
+        BookRowView(book: book, isInReadingList: false, onToggleWishList: {}, onOpenBookDetails: {})
     }
 }

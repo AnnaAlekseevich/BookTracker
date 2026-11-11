@@ -68,7 +68,10 @@ struct BooksWishListView: View {
                     BookRowView(
                         book: book,
                         isInReadingList: true,
-                        onToggleWishList: {}
+                        onToggleWishList: {},
+                        onOpenBookDetails: {
+                            model.openBookDetails(book)
+                        }
                     )
                 }
                 .onDelete(perform: model.deleteBook)

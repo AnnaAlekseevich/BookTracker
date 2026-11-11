@@ -9,7 +9,8 @@ import SwiftUI
 import Observation
 
 enum BooksRoute: Hashable {
-    case wishList
+    case wishList(books: [Book])
+    case bookDetails(book: Book)
 }
 
 @MainActor
@@ -87,7 +88,11 @@ class BooksViewModel {
         }
     }
     
-    func openBoorsWishListScreen() {
-        path.append(.wishList)
+    func openBookDetails(_ book: Book) {
+        path.append(.bookDetails(book: book))
+    }
+    
+    func openBooksWishListScreen() {
+        path.append(.wishList(books: booksWishList))
     }
 }
