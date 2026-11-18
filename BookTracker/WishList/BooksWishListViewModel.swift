@@ -18,11 +18,10 @@ final class BooksWishListViewModel {
     var books: [Book]
     var isShowAddBookView = false
     var newBookTitle = ""
-    let onOpenBookDetails: (Book) -> Void
+    var selectedBook: Book?
     
-    init(books: [Book] = [], onOpenBookDetails: @escaping (Book) -> Void = { _ in }) {
+    init(books: [Book] = []) {
         self.books = books
-        self.onOpenBookDetails = onOpenBookDetails
     }
 
     var state: BooksWishListState {
@@ -61,6 +60,6 @@ final class BooksWishListViewModel {
     }
     
     func openBookDetails(_ book: Book) {
-        onOpenBookDetails(book) 
+        selectedBook = book
     }
 }

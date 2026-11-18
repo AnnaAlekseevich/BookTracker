@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BooksView: View {
     @State private var model = BooksViewModel()
-
+    
     var body: some View {
         NavigationStack(path: $model.path) {
             switch model.state {
@@ -56,33 +56,31 @@ struct BooksView: View {
                         }
                     )
                 }
-
+                
                 if model.state != .finished {
                     loadMoreView
                 }
             }
             .listStyle(.plain)
-
+            
             Button(action: model.openBooksWishListScreen) {
                 Text("Books Wish List")
             }
             
-//            NavigationLink(destination: BooksWishListView()) {
-//                Text("Books Wish List")
-//            }
+            //            NavigationLink(destination: BooksWishListView()) {
+            //                Text("Books Wish List")
+            //            }
         }
         .navigationDestination(for: BooksRoute.self) { route in
             switch route {
             case let .wishList(books):
-                BooksWishListView(model: BooksWishListViewModel(books: books, onOpenBookDetails: { book in
-                    model.openBookDetails(book)
-                }))
+                BooksWishListView(model: BooksWishListViewModel(books: books))
             case let .bookDetails(book):
                 BookDetailsView(model: .init(book: book))
             }
         }
     }
-
+    
     private var loadMoreView: some View {
         HStack {
             Spacer()
@@ -100,5 +98,5 @@ struct BooksView: View {
             await model.loadMoreBooks()
         }
     }
-
+    
 }

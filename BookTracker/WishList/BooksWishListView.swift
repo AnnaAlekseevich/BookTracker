@@ -10,11 +10,11 @@ import SwiftUI
 struct BooksWishListView: View {
     @State private var model: BooksWishListViewModel
     @FocusState private var isTitleFocused: Bool
-
+    
     init(model: BooksWishListViewModel = BooksWishListViewModel()) {
         _model = State(initialValue: model)
     }
-
+    
     var body: some View {
         VStack(spacing: 0) {
             if model.isShowAddBookView {
@@ -31,8 +31,11 @@ struct BooksWishListView: View {
                 }
             }
         }
+        .navigationDestination(item: $model.selectedBook) { book in
+            BookDetailsView(model: .init(book: book))
+        }
     }
-
+    
     private var addBookView: some View {
         HStack {
             TextField("Write your book title", text: $model.newBookTitle)
@@ -40,10 +43,10 @@ struct BooksWishListView: View {
                 .submitLabel(.done)
                 .focused($isTitleFocused)
                 .onSubmit(model.addBookToList)
-
+            
             Button("Add", action: model.addBookToList)
                 .disabled(!model.canAddBook)
-
+            
             Button(action: model.hideAddBookView) {
                 Label("Cancel", systemImage: "xmark")
                     .labelStyle(.iconOnly)
@@ -52,7 +55,7 @@ struct BooksWishListView: View {
         .padding()
         .onAppear { isTitleFocused = true }
     }
-
+    
     @ViewBuilder
     private var content: some View {
         switch model.state {
