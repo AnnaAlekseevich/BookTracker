@@ -12,19 +12,27 @@ struct BooksView: View {
 
     var body: some View {
         NavigationStack(path: $model.path) {
-            if model.isLoading {
+            switch model.state {
+            case .loading:
                 ProgressView()
-            } else if let errorMessage = model.errorMessage {
+                
+            case .error(let message):
                 ContentUnavailableView {
-                    Label("Couldn't load books", systemImage: "wifi.exclamationmark")
+                    Label(
+                        "Couldn't load books",
+                        systemImage: "wifi.exclamationmark"
+                    )
                 } description: {
-                    Text(errorMessage)
+                    Text(message)
                 } actions: {
                     Button("Try again") {
-                        Task { await model.loadBooks() }
+                        Task {
+                            await model.loadBooks()
+                        }
                     }
                 }
-            } else {
+                
+            case .loaded, .loadingMore, .loadMoreFailed, .finished:
                 contentView
             }
         }.task {
@@ -49,7 +57,7 @@ struct BooksView: View {
                     )
                 }
 
-                if model.canLoadMore {
+                if model.state != .finished {
                     loadMoreView
                 }
             }
@@ -78,7 +86,7 @@ struct BooksView: View {
     private var loadMoreView: some View {
         HStack {
             Spacer()
-            if model.loadMoreFailed {
+            if model.state == .loadMoreFailed {
                 Button("Couldn't load more. Try again") {
                     Task { await model.loadMoreBooks() }
                 }

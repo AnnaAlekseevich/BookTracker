@@ -23,18 +23,20 @@ class BooksViewModel {
     private let pageSize = 20
     private let maxBooks = 1000
     private(set) var nextOffset = 0
+    private(set) var state: BooksState = .loading
 
-    private(set) var isLoading = true
-    private(set) var errorMessage: String?
-    private(set) var isLoadingMore = false
-    private(set) var loadMoreFailed = false
-    private(set) var canLoadMore = false
+    enum BooksState: Equatable {
+        case loading
+        case loaded
+        case loadingMore
+        case loadMoreFailed
+        case finished
+        case error(String)
+    }
 
     func loadBooks() async {
-        isLoading = true
-        errorMessage = nil
+        state = .loading
 
-        defer { isLoading = false }
         do {
             let response = try await api.loadBooks(offset: 0, limit: pageSize)
 
@@ -43,17 +45,19 @@ class BooksViewModel {
             appendPage(response)
         } catch {
             print("Loading error: \(error)")
-            errorMessage = error.localizedDescription
+            state = .error(error.localizedDescription)
         }
     }
 
     func loadMoreBooks() async {
-        guard canLoadMore, !isLoadingMore else { return }
+        switch state {
+            case .loaded, .loadMoreFailed:
+                break
+            default:
+                return
+            }
 
-        isLoadingMore = true
-        loadMoreFailed = false
-
-        defer { isLoadingMore = false }
+        state = .loadingMore
         do {
             let limit = min(pageSize, maxBooks - nextOffset)
             let response = try await api.loadBooks(offset: nextOffset, limit: limit)
@@ -61,7 +65,7 @@ class BooksViewModel {
             appendPage(response)
         } catch {
             print("Loading more error: \(error)")
-            loadMoreFailed = true
+            state = .loadMoreFailed
         }
     }
 
@@ -73,7 +77,9 @@ class BooksViewModel {
 
         books.append(contentsOf: newBooks)
         nextOffset += response.docs.count
-        canLoadMore = !response.docs.isEmpty && nextOffset < min(maxBooks, response.numFound)
+        let canLoadMore = !response.docs.isEmpty && nextOffset < min(maxBooks, response.numFound)
+
+        state = canLoadMore ? .loaded : .finished
     }
     
     func isInWishList(_ book: Book) -> Bool {

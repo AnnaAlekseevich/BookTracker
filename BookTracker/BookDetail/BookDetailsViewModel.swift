@@ -8,7 +8,6 @@
 import SwiftUI
 import Observation
 
-@Observable
 class BookDetailsViewModel {
     var book: Book
     
