@@ -9,7 +9,7 @@ import SwiftUI
 import Observation
 
 enum BooksRoute: Hashable {
-    case wishList(books: [Book])
+    case wishList
     case bookDetails(book: Book)
 }
 
@@ -17,14 +17,20 @@ enum BooksRoute: Hashable {
 @Observable
 class BooksViewModel {
     var books: [Book] = []
-    var booksWishList: [Book] = []
+    let storage: BooksWishListStorage
     var path: [BooksRoute] = []
     private let api = BooksApi()
     private let pageSize = 20
     private let maxBooks = 1000
     private(set) var nextOffset = 0
     private(set) var state: BooksState = .loading
+    var booksWishList: [Book] { storage.books }
+    
+    init(storage: BooksWishListStorage) {
+        self.storage = storage
+    }
 
+    //move to extension
     enum BooksState: Equatable {
         case loading
         case loaded
@@ -83,15 +89,11 @@ class BooksViewModel {
     }
     
     func isInWishList(_ book: Book) -> Bool {
-        booksWishList.contains { $0.id == book.id }
+        storage.contains(book: book)
     }
     
     func toggleWishList(_ book: Book) {
-        if isInWishList(book) {
-            booksWishList.removeAll { $0.id == book.id }
-        } else {
-            booksWishList.append(book)
-        }
+        storage.toggle(book: book)
     }
     
     func openBookDetails(_ book: Book) {
@@ -99,6 +101,6 @@ class BooksViewModel {
     }
     
     func openBooksWishListScreen() {
-        path.append(.wishList(books: booksWishList))
+        path.append(.wishList)
     }
 }

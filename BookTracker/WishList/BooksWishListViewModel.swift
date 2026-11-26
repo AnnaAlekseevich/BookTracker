@@ -15,48 +15,26 @@ enum BooksWishListState {
 
 @Observable
 final class BooksWishListViewModel {
-    var books: [Book]
-    var isShowAddBookView = false
-    var newBookTitle = ""
+    let storage: BooksWishListStorage
+    var books: [Book] { storage.books }
     var selectedBook: Book?
     
-    init(books: [Book] = []) {
-        self.books = books
+    init(storage: BooksWishListStorage) {
+        self.storage = storage
     }
 
     var state: BooksWishListState {
         if books.isEmpty { .empty } else { .filled }
     }
 
-    var canAddBook: Bool {
-        !newBookTitle.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-
-    func showAddBookView() {
-        isShowAddBookView = true
-    }
-
-    func hideAddBookView() {
-        isShowAddBookView = false
-        newBookTitle = ""
-    }
-
-    func addBookToList() {
-        guard canAddBook else { return }
-
-        books.append(
-            Book(
-                id: UUID().uuidString,
-                title: newBookTitle.trimmingCharacters(in: .whitespaces),
-                description: "A book you want to read.",
-                coverURL: nil
-            )
-        )
-        hideAddBookView()
-    }
-
     func deleteBook(index: IndexSet) {
-        books.remove(atOffsets: index)
+//        if let firstIndex = index.first {  }
+        guard let firstIndex = index.first else { return }
+        storage.removeBook(book: books[firstIndex])
+    }
+    
+    func toggleWishList(_ book: Book) {
+        storage.toggle(book: book)
     }
     
     func openBookDetails(_ book: Book) {

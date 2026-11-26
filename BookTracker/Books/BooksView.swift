@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct BooksView: View {
-    @State private var model = BooksViewModel()
+    @State private var model: BooksViewModel
+    
+    init(storage: BooksWishListStorage) {
+        _model = State(initialValue: BooksViewModel(storage: storage))
+    }
     
     var body: some View {
         NavigationStack(path: $model.path) {
@@ -73,10 +77,10 @@ struct BooksView: View {
         }
         .navigationDestination(for: BooksRoute.self) { route in
             switch route {
-            case let .wishList(books):
-                BooksWishListView(model: BooksWishListViewModel(books: books))
+            case .wishList:
+                BooksWishListView(model: BooksWishListViewModel(storage: model.storage))
             case let .bookDetails(book):
-                BookDetailsView(model: .init(book: book))
+                BookDetailsView(model: BookDetailsViewModel(book: book, storage: model.storage))
             }
         }
     }

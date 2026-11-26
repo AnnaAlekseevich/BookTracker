@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct RootView: View {
+    @State
+    private var storage = BooksWishListStorage()
 
     var body: some View {
-        BooksView()
+        BooksView(storage: storage)
     }
 }
 
