@@ -55,14 +55,9 @@ struct BooksWishListView: View {
     }
 }
 
-//#Preview("Empty") {
-//    NavigationStack {
-//        BooksWishListView
-//    }
-//}
-//
-//#Preview("Filled") {
-//    NavigationStack {
-//        BooksWishListView(model: BooksWishListViewModel(books: Book.samples))
-//    }
-//}
+#Preview("Empty") {
+    NavigationStack { BooksWishListView(model: .init(storage: BooksWishListStorage())) }
+}
+#Preview("Filled") {
+    NavigationStack { BooksWishListView(model: .init(storage: BooksWishListStorage(books: Book.samples))) }
+}

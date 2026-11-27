@@ -50,12 +50,18 @@ struct BookDetailsView: View {
         Button {
             model.toggleWishList()
         } label: {
-            Image(systemName: model.isFavorite ? "star.fill" : "star")
+            Image(systemName: model.isInWishList ? "heart.fill" : "heart")
                 .font(.title2)
-                .foregroundStyle(model.isFavorite ? Color.yellow : Color.secondary)
+                .foregroundStyle(model.isInWishList ? Color.red : Color.secondary)
         }
         .accessibilityLabel(
-            model.isFavorite ? "Remove from favorites" : "Add to favorites"
+            model.isInWishList ? "Remove from favorites" : "Add to favorites"
         )
+    }
+}
+
+#Preview {
+    NavigationStack {
+        BookDetailsView(model: BookDetailsViewModel(book: Book.samples[0], storage: BooksWishListStorage()))
     }
 }

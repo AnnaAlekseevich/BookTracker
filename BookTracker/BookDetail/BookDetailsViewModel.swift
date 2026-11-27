@@ -1,5 +1,5 @@
 //
-//  BookDetailViewModel.swift
+//  BookDetailsViewModel.swift
 //  BookTracker
 //
 //  Created by Anna Alekseyevich on 08/11/2026.
@@ -11,14 +11,13 @@ import Observation
 @Observable
 class BookDetailsViewModel {
     private let storage: BooksWishListStorage
-    var books: [Book] { storage.books }
-    var book: Book
+    let book: Book
     
-    var isFavorite: Bool {
-        storage.books.contains { $0.id == book.id }
+    var isInWishList: Bool {
+        storage.contains(book: book)
     }
     
-    init(book: Book = Book(id: "", title: "", description: "", coverURL: nil), storage: BooksWishListStorage) {
+    init(book: Book, storage: BooksWishListStorage) {
         self.book = book
         self.storage = storage
     }
