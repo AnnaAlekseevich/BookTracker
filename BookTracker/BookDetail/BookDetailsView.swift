@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct BookDetailsView: View {
-    @State private var model = BookDetailsViewModel()
+    @State private var model: BookDetailsViewModel
     
-    init(model: BookDetailsViewModel = BookDetailsViewModel()) {
+    init(model: BookDetailsViewModel) {
         _model = State(initialValue: model)
     }
 
@@ -22,6 +22,11 @@ struct BookDetailsView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 6))
         }
         .navigationTitle("Book Details")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                favoriteButton
+            }
+        }
     }
     
     private var bookCover: some View {
@@ -39,5 +44,24 @@ struct BookDetailsView: View {
                     .foregroundStyle(.secondary)
             }
         }
+    }
+    
+    private var favoriteButton: some View {
+        Button {
+            model.toggleWishList()
+        } label: {
+            Image(systemName: model.isInWishList ? "heart.fill" : "heart")
+                .font(.title2)
+                .foregroundStyle(model.isInWishList ? Color.red : Color.secondary)
+        }
+        .accessibilityLabel(
+            model.isInWishList ? "Remove from favorites" : "Add to favorites"
+        )
+    }
+}
+
+#Preview {
+    NavigationStack {
+        BookDetailsView(model: BookDetailsViewModel(book: Book.samples[0], storage: BooksWishListStorage()))
     }
 }

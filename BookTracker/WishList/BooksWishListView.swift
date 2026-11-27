@@ -9,51 +9,20 @@ import SwiftUI
 
 struct BooksWishListView: View {
     @State private var model: BooksWishListViewModel
-    @FocusState private var isTitleFocused: Bool
     
-    init(model: BooksWishListViewModel = BooksWishListViewModel()) {
+    init(model: BooksWishListViewModel) {
         _model = State(initialValue: model)
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            if model.isShowAddBookView {
-                addBookView
-            }
             content
                 .frame(maxHeight: .infinity)
         }
         .navigationTitle("Books Wish List")
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: model.showAddBookView) {
-                    Label("Add book", systemImage: "plus")
-                }
-            }
-        }
         .navigationDestination(item: $model.selectedBook) { book in
-            BookDetailsView(model: .init(book: book))
+            BookDetailsView(model: .init(book: book, storage: model.storage))
         }
-    }
-    
-    private var addBookView: some View {
-        HStack {
-            TextField("Write your book title", text: $model.newBookTitle)
-                .textFieldStyle(.roundedBorder)
-                .submitLabel(.done)
-                .focused($isTitleFocused)
-                .onSubmit(model.addBookToList)
-            
-            Button("Add", action: model.addBookToList)
-                .disabled(!model.canAddBook)
-            
-            Button(action: model.hideAddBookView) {
-                Label("Cancel", systemImage: "xmark")
-                    .labelStyle(.iconOnly)
-            }
-        }
-        .padding()
-        .onAppear { isTitleFocused = true }
     }
     
     @ViewBuilder
@@ -71,7 +40,9 @@ struct BooksWishListView: View {
                     BookRowView(
                         book: book,
                         isInReadingList: true,
-                        onToggleWishList: {},
+                        onToggleWishList: {
+                            model.toggleWishList(book)
+                        },
                         onOpenBookDetails: {
                             model.openBookDetails(book)
                         }
@@ -85,13 +56,8 @@ struct BooksWishListView: View {
 }
 
 #Preview("Empty") {
-    NavigationStack {
-        BooksWishListView()
-    }
+    NavigationStack { BooksWishListView(model: .init(storage: BooksWishListStorage())) }
 }
-
 #Preview("Filled") {
-    NavigationStack {
-        BooksWishListView(model: BooksWishListViewModel(books: Book.samples))
-    }
+    NavigationStack { BooksWishListView(model: .init(storage: BooksWishListStorage(books: Book.samples))) }
 }
